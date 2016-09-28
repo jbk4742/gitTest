@@ -43,4 +43,9 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this,"완료",Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
