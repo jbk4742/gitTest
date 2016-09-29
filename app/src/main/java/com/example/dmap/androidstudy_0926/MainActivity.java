@@ -9,6 +9,8 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener{
     private static int BTN_COUNT = 9;
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity
     private Button[] buttons = new Button[BTN_COUNT];
 
     private int BtnCount = 0;
-
+    private int score_num=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +34,24 @@ public class MainActivity extends AppCompatActivity
             buttons[i] = btn;
             btnGrid.addView(btn);
         }
+        Random random = new Random();
+
+        for(int i=0; i<BTN_COUNT;i++){
+            buttons[i].setText((random.nextInt(9) + 1)+"");
+        }
     }
+
 
     public void onClick(View v){
 
         Button currentBtn = (Button) v;
         currentBtn.setBackgroundColor(Color.RED);
         BtnCount++;
-        if(BtnCount==BTN_COUNT)
-            Toast.makeText(this,"완료",Toast.LENGTH_SHORT).show();
+        if(BtnCount==BTN_COUNT) {
+            Toast.makeText(this, "완료", Toast.LENGTH_SHORT).show();
+            score_num+=100;
+            score.setText("점수는 : "+score_num);
+        }
 
     }
 
